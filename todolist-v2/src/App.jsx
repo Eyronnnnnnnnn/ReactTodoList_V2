@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
 import CircularProgressBar from './components/progressbar';
+import Todolist from './components/Todolist';
 
 
 function App() {
 
 const [weather , setWeather] = useState(null);
 const [timezone, setTimezone] = useState ( null);
+
+const  todo =  [
+  {id : 1 , list : "hello" , status : false},
+   {id : 2 , list : "hi" , status : false},
+    {id : 3 , list : "blehhh" , status : false},
+];
   useEffect(()=>{
 
     
@@ -32,7 +39,7 @@ const [timezone, setTimezone] = useState ( null);
   <div className="bg-white rounded-3xl shadow-xl  w-270 h-8/12 flex overflow-hidden">
    <div className='w-3/5 h-122'>
    {/* // header for left container */}
-   <div className='h-36 p-7'>
+   <div className='h-36 p-9 '>
     <p className=' text-gray-600 font-bold text-xs font-sans'>TODAY</p>
     <h1 className='font-bold text-5xl text-gray-800 pb-3'> MYDAY</h1>
     {weather && timezone ? (
@@ -40,6 +47,9 @@ const [timezone, setTimezone] = useState ( null);
     ):(<p>loading...</p>)}
    
    </div>
+   <Todolist 
+    todo = {todo}
+   />
    </div>
     <div className='bg-gradient-to-r from-[#a78bfa] to-[#3b82f6] w-120 flex flex-col p-10'>
       <div>
