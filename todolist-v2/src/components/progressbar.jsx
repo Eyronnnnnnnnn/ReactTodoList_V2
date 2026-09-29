@@ -1,19 +1,11 @@
 'use client'
 import React from 'react'
 
-const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage = 10 }) => {
+const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage }) => {
   const radius = (sqSize - strokeWidth) / 2
   const viewBox = `0 0 ${sqSize} ${sqSize}`
   const dashArray = radius * Math.PI * 2
   const dashOffset = dashArray - (dashArray * percentage) / 100
-
-  // Conditional style for percentage text
-  const percentageColor = percentage === 10 ? "white" : "#172554"
-  const percentageOpacity = percentage === 10 ? 0.6 : 1
-
-  // Conditional style for "complete" label
-  const labelColor = percentage === 10 ? "white" : "#172554"
-  const labelOpacity = percentage === 10 ? 0.6 : 1
 
   return (
     <svg width={sqSize} height={sqSize} viewBox={viewBox}>
@@ -25,9 +17,9 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage = 10 }
         r={radius}
         strokeWidth={strokeWidth}
       />
-      {/* Progress circle */}
+      {/* Progress circle with shadow + smooth transition */}
       <circle
-        className="fill-none stroke-[#f5f2f2ce] transition-all ease-in"
+        className="fill-none stroke-[#f5f2f2ce] transition-all duration-700 ease-in-out drop-shadow-md"
         cx={sqSize / 2}
         cy={sqSize / 2}
         r={radius}
@@ -36,25 +28,24 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage = 10 }
         transform={`rotate(-90 ${sqSize / 2} ${sqSize / 2})`}
         style={{ strokeDasharray: dashArray, strokeDashoffset: dashOffset }}
       />
-      {/* Percentage text */}
+      {/* Percentage text with fade transition */}
       <text
         x="50%"
         y="45%"
         textAnchor="middle"
-        fill={percentageColor}
-      
-        className="text-3xl font-bold"
+        fill="white"
+        className="text-3xl font-bold transition-all duration-500 ease-in-out"
       >
         {percentage}%
       </text>
-      {/* Label text */}
+      {/* Label text with opacity transition */}
       <text
         x="50%"
         y="59%"
         textAnchor="middle"
-        fill={labelColor}
-        fillOpacity={labelOpacity}
-        className="text-lg font-medium uppercase"
+        fill="white"
+        className="text-lg font-medium uppercase transition-opacity duration-500 ease-in-out"
+        style={{ opacity: percentage === 10 ? 0.6 : 1 }}
       >
         complete
       </text>
