@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import CircularProgressBar from './components/progressbar';
 
 
 function App() {
@@ -22,25 +23,34 @@ const [timezone, setTimezone] = useState ( null);
     } 
 
     fetchweather();
-  },[])
+  })
 
 
   return (
     
 <div className="bg-gradient-to-r from-blue-500 to-purple-900 w-full h-screen flex items-center justify-center">
   <div className="bg-white rounded-3xl shadow-xl  w-270 h-8/12 flex overflow-hidden">
-   <div className='bg-amber-400 w-3/5 h-122'>
+   <div className='w-3/5 h-122'>
    {/* // header for left container */}
-   <div className='bg-blue-400 h-36 p-7'>
+   <div className='h-36 p-7'>
     <p className=' text-gray-600 font-bold text-xs font-sans'>TODAY</p>
-    <h1 className='font-bold text-5xl text-gray-800'> MYDAY</h1>
+    <h1 className='font-bold text-5xl text-gray-800 pb-3'> MYDAY</h1>
     {weather && timezone ? (
- <p className='text-xsm'>{weather.time} {timezone}</p>
+ <p className='text-xsm text-black/50 font-semibold'>{weather.time} {timezone}</p>
     ):(<p>loading...</p>)}
    
    </div>
    </div>
-    <div className='bg-amber-900 w-120'></div>
+    <div className='bg-gradient-to-r from-[#a78bfa] to-[#3b82f6] w-120 flex flex-col p-10'>
+      <div>
+        <p className=' text-white/60 text-m font-bold'>OVERVIEW</p>
+        <h1 className='text-white/90 text-4xl font-bold'>Progress</h1>
+      </div>
+      <div className='flex items-center justify-center h-65'>
+          <CircularProgressBar/>
+      </div>
+      
+    </div>
    
    
   </div>
