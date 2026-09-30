@@ -1,9 +1,9 @@
 export default function NewtodoModal() {
   return (
     <div className=" bg-black/20 fixed inset-0 flex items-center justify-center  ">
-      <div className="bg-white rounded-2xl shadow-2xl w-4/12 h-160 p-10 ">
-        <div className="bg-amber-300 w-full h-21 flex ">
-          <div className="bg-amber-900 w-90 h-full text-start flex items-start gap-3">
+      <div className="bg-white rounded-2xl shadow-2xl w-4/12 h-140 p-10 ">
+        <div className=" w-full h-21 flex ">
+          <div className="w-90 h-full text-start flex items-start gap-3">
             <div>
               <button
                 type="button"
@@ -27,13 +27,13 @@ export default function NewtodoModal() {
             </div>
             <div>
               <h1 className="font-bold text-2xl">Add new Task</h1>
-              <p className="text-white/30 text-sm">
+              <p className="text-gray-400 text-sm">
                 Make room for what matters today
               </p>
             </div>
           </div>
 
-          <div className="bg-amber-700 w-33 h-full flex justify-end ">
+          <div className=" w-33 h-full flex justify-end ">
             <div>
               <button
                 type="button"
@@ -56,8 +56,48 @@ export default function NewtodoModal() {
                 </svg>
               </button>
             </div>
+            
           </div>
+         
         </div>
+         <div className="w-full h-20"><h1>Task name</h1>
+         <input className=" w-full h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60" placeholder="What do you need to do? "></input>
+         </div>
+         <div className="w-full h-40"><h1>Description <span className="text-gray-400">(Optional)</span></h1>
+         <input className=" w-full h-30 border-2 rounded-sm pl-4 text-sm border-gray-400/60" placeholder="What do you need to do? "></input>
+         </div>
+         <div className="w-full h-20">
+            
+           <div className="flex">
+             <div>
+            <h1>Due Date</h1>
+          <input className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
+          placeholder="What do you need to do? "
+          type="date"
+          >
+            
+          </input>
+         </div>
+          <div>
+            <h1>Time</h1>
+          <input className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
+          placeholder="What do you need to do? "
+          type="time"
+          >
+            
+          </input>
+         </div>
+           </div>
+        
+         <div className=" w-full h-15 flex justify-end gap-4 items-end mt-5">
+            <div>
+                <button className="bg-violet-400 w-30 h-10 rounded-lg">Cancel</button>
+            </div>
+              <div>
+                 <button className="bg-violet-400 w-30 h-10 rounded-lg">Create Task</button>
+            </div>
+         </div>
+         </div>
       </div>
     </div>
   );
