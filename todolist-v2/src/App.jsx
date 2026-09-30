@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CircularProgressBar from "./components/progressbar";
 import Todolist from "./components/Todolist";
+import NewtodoModal from "./components/newtodoModal";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -81,7 +82,10 @@ function App() {
           </div>
         </div>
       </div>
+     
+      <NewtodoModal/>
     </div>
+    
   );
 }
 
