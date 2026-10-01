@@ -3,17 +3,47 @@ import CircularProgressBar from "./components/progressbar";
 import Todolist from "./components/Todolist";
 import NewtodoModal from "./components/newtodoModal";
 
+function formatTime(timeString) {
+  const [hours, minutes] = timeString.split(":");
+  let h = parseInt(hours, 10);
+  const ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12; // convert 0 -> 12
+  return `${h}:${minutes} ${ampm}`;
+}
+
+
 function App() {
   const [weather, setWeather] = useState(null);
   const [timezone, setTimezone] = useState(null);
+  const [modalcontrol, setmodalControl] = useState(false);
+  const[newid,setnewid] = useState(6);
 
   const [todo, setTodos] = useState([
-    { id: 1, list: "Morning Workout", time: "9:40pm", status: true },
-    { id: 2, list: "hi", time: "9:40pm", status: true },
-    { id: 3, list: "blehhh", time: "9:40pm", status: true },
-    { id: 4, list: "blehhh", time: "9:40pm", status: true },
-    { id: 5, list: "blehhh", time: "9:40pm", status: false },
+    { id: 1, list: "Morning Workout", time: "9:40", status: true },
+    { id: 2, list: "hi", time: "9:40", status: true },
+    { id: 3, list: "blehhh", time: "9:40", status: true },
+    { id: 4, list: "blehhh", time: "9:40", status: true },
+    { id: 5, list: "blehhh", time: "9:40", status: true },
   ]);
+
+  const [newtask, setnewtask] = useState(null);
+  const [newTime, setnewTime] = useState(null);
+  const [newDate , setnewDate] = useState(null)
+
+
+  // const [newtasklist, setnewtasklist] = useState([])
+
+
+    const addnewtasklist = () => {
+
+      const newtodo = {
+        id: newid , list: newtask , time: newTime, status: true ,
+    };
+
+      setTodos([...todo , newtodo])
+      setnewid(newid + 1);
+    };
+
   useEffect(() => {
     const fetchweather = async () => {
       try {
@@ -45,6 +75,13 @@ function App() {
   const total = todo.length;
   const percentage = Math.round((completed / total) * 100);
 
+  const closemodal = () => {
+    setmodalControl(false);
+  };
+  const openmodal = () => {
+    setmodalControl(true);
+  };
+
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-900 w-full h-screen flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-xl  w-270 h-8/12 flex overflow-hidden">
@@ -61,11 +98,16 @@ function App() {
               <p>loading...</p>
             )}
           </div>
-          <Todolist todo={todo} toggleStatus={toggleStatus} />
+          <Todolist
+          formatTime = {formatTime}
+          todo={todo} toggleStatus={toggleStatus} />
 
           <div className="w-full flex h-full justify-end p-4  ">
             <div>
-              <button className="bg-purple-600 text-white font-bold  w-26 h-8 rounded-xl">
+              <button
+                onClick={() => openmodal()}
+                className="bg-purple-600 text-white font-bold  w-26 h-8 rounded-xl"
+              >
                 New task
               </button>
             </div>
@@ -82,10 +124,18 @@ function App() {
           </div>
         </div>
       </div>
-     
-      <NewtodoModal/>
+      {setmodalControl && (
+        <NewtodoModal
+        setnewDate = {setnewDate}
+        newDate={newDate}
+        setnewTime={setnewTime}
+        newTime = {newTime}
+        setnewtask={setnewtask}
+        newtask={newtask}
+        addnewtasklist = {addnewtasklist}
+        modalcontrol={modalcontrol} closemodal={closemodal} />
+      )}
     </div>
-    
   );
 }
 

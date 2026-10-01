@@ -1,4 +1,4 @@
-export default function Todolist({ todo ,toggleStatus} ) {
+export default function Todolist({ todo ,toggleStatus,formatTime} ) {
 
    
   return (
@@ -34,7 +34,8 @@ export default function Todolist({ todo ,toggleStatus} ) {
              
               <div>
                 
-                <span className="text-gray-600/80">{time}</span>
+                <span className="text-gray-600/80">{formatTime(time)}</span>
+
               </div>
             </div>
           </div>

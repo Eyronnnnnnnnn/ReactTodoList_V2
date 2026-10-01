@@ -1,5 +1,10 @@
-export default function NewtodoModal() {
+export default function NewtodoModal({modalcontrol,closemodal,addnewtasklist,newtask,setnewtask,newDate,newTime,setnewDate,setnewTime}) {
+  if(!modalcontrol) return null
+
+
+
   return (
+
     <div className=" bg-black/20 fixed inset-0 flex items-center justify-center  ">
       <div className="bg-white rounded-2xl shadow-2xl w-4/12 h-140 p-10 ">
         <div className=" w-full h-21 flex ">
@@ -37,7 +42,7 @@ export default function NewtodoModal() {
             <div>
               <button
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={()=>closemodal()}
                 aria-label="Close modal"
                 className="flex h-8 w-8 items-center justify-center
              rounded-lg text-slate-500 transition-colors
@@ -61,7 +66,10 @@ export default function NewtodoModal() {
          
         </div>
          <div className="w-full h-20"><h1>Task name</h1>
-         <input className=" w-full h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60" placeholder="What do you need to do? "></input>
+         <input
+         value={newtask}
+         onChange={(event)=>setnewtask(event.target.value)}
+         className=" w-full h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60" placeholder="What do you need to do? "></input>
          </div>
          <div className="w-full h-40"><h1>Description <span className="text-gray-400">(Optional)</span></h1>
          <input className=" w-full h-30 border-2 rounded-sm pl-4 text-sm border-gray-400/60" placeholder="What do you need to do? "></input>
@@ -71,7 +79,10 @@ export default function NewtodoModal() {
            <div className="flex">
              <div>
             <h1>Due Date</h1>
-          <input className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
+          <input
+          value = {newDate}
+          onChange={(event)=> newDate(event.target.value)}
+          className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
           placeholder="What do you need to do? "
           type="date"
           >
@@ -80,7 +91,10 @@ export default function NewtodoModal() {
          </div>
           <div>
             <h1>Time</h1>
-          <input className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
+          <input
+          value = {newTime}
+          onChange={(event)=> setnewTime(event.target.value)}
+          className=" w-60 h-10 border-2 rounded-sm pl-4 text-sm border-gray-400/60"
           placeholder="What do you need to do? "
           type="time"
           >
@@ -94,7 +108,9 @@ export default function NewtodoModal() {
                 <button className="bg-violet-400 w-30 h-10 rounded-lg">Cancel</button>
             </div>
               <div>
-                 <button className="bg-violet-400 w-30 h-10 rounded-lg">Create Task</button>
+                 <button 
+                 onClick={()=> addnewtasklist()}
+                 className="bg-violet-400 w-30 h-10 rounded-lg">Create Task</button>
             </div>
          </div>
          </div>
