@@ -36,7 +36,7 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage }) => 
         fill="white"
         className="text-3xl font-bold transition-all duration-500 ease-in-out"
       >
-        {percentage}%
+        {percentage}% 
       </text>
       {/* Label text with opacity transition */}
       <text

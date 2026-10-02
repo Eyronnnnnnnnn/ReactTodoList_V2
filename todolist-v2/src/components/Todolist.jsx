@@ -1,13 +1,22 @@
-export default function Todolist({ todo ,toggleStatus,formatTime} ) {
+export default function Todolist({ todo ,toggleStatus,formatTime,deleteList} ) {
 
    
+  
+    if(!todo  || todo.length === 0 ){
   return (
-    <div className=" w-full h-70 overflow-y-scroll scrollbar-hide p-9 flex flex-col ">
+      <div className="p-9 h-70  text-4xl text-gray-500 text-center">
+       NO TASK
+      </div>
+    );
+    }
+    return (
+  
+    <div className="  w-full h-70 overflow-y-scroll scrollbar-hide p-9 flex flex-col ">
       {todo.map(({ id, list, time ,status}) => (
         <div key={id} className="mb-2">
           <div className="h-px bg-gray-400/40 w-full"></div>
-          <div className="flex  items-center py-2">
-            <div className="pr-3">
+          <div className=" flex  items-center py-2">
+            <div className="  pr-3">
               <div
               onClick={()=> toggleStatus(id)}
               className={`w-6 h-6 rounded-full flex items-center justify-center 
@@ -25,9 +34,12 @@ export default function Todolist({ todo ,toggleStatus,formatTime} ) {
                 </svg>
               )}
             </div>
+          
+            
 
             </div>
-            <div>
+             
+            <div className="">
                 {status ?   <span className="font-bold">{list}</span>
                 :   <span className="font-bold text-gray-600/80 line-through">{list}</span>    
             }
@@ -37,7 +49,17 @@ export default function Todolist({ todo ,toggleStatus,formatTime} ) {
                 <span className="text-gray-600/80">{formatTime(time)}</span>
 
               </div>
+             
             </div>
+              <div className="w-fulxl flex justify-end">
+                <div className=" w-10">
+                    <buton
+                    onClick = {()=> deleteList(id)}
+                    >
+                      <img className="w-9" src="https://cdn-icons-png.flaticon.com/512/18461/18461204.png"></img>
+                    </buton>
+                   </div>
+              </div>
           </div>
         </div>
       ))}

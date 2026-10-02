@@ -16,14 +16,10 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [timezone, setTimezone] = useState(null);
   const [modalcontrol, setmodalControl] = useState(false);
-  const[newid,setnewid] = useState(6);
+  const[newid,setnewid] = useState(2);
 
   const [todo, setTodos] = useState([
-    { id: 1, list: "Morning Workout", time: "9:40", status: true },
-    { id: 2, list: "hi", time: "9:40", status: true },
-    { id: 3, list: "blehhh", time: "9:40", status: true },
-    { id: 4, list: "blehhh", time: "9:40", status: true },
-    { id: 5, list: "blehhh", time: "9:40", status: true },
+    
   ]);
 
   const [newtask, setnewtask] = useState(null);
@@ -37,12 +33,14 @@ function App() {
     const addnewtasklist = () => {
 
       const newtodo = {
-        id: newid , list: newtask , time: newTime, status: true ,
+        id: newid , list: newtask , time: newTime || "00:00", status: true ,
     };
 
       setTodos([...todo , newtodo])
       setnewid(newid + 1);
+    
     };
+
 
   useEffect(() => {
     const fetchweather = async () => {
@@ -61,7 +59,7 @@ function App() {
     };
 
     fetchweather();
-  }, []);
+  },[]);
 
   function toggleStatus(id) {
     setTodos(
@@ -77,10 +75,15 @@ function App() {
 
   const closemodal = () => {
     setmodalControl(false);
-  };
+  }
   const openmodal = () => {
     setmodalControl(true);
   };
+
+
+  const deleteList = (id)=>{
+     setTodos(todo.filter((todo)=> todo.id !== id))
+  }
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-900 w-full h-screen flex items-center justify-center">
@@ -99,6 +102,7 @@ function App() {
             )}
           </div>
           <Todolist
+          deleteList = {deleteList}
           formatTime = {formatTime}
           todo={todo} toggleStatus={toggleStatus} />
 
