@@ -71,7 +71,7 @@ function App() {
 
   const completed = todo.filter((t) => !t.status).length;
   const total = todo.length;
-  const percentage = Math.round((completed / total) * 100);
+  const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
 
   const closemodal = () => {
     setmodalControl(false);

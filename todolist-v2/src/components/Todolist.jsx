@@ -51,7 +51,7 @@ export default function Todolist({ todo ,toggleStatus,formatTime,deleteList} ) {
               </div>
              
             </div>
-              <div className="w-fulxl flex justify-end">
+              <div className="w-full flex justify-end">
                 <div className=" w-10">
                     <buton
                     onClick = {()=> deleteList(id)}
