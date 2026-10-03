@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CircularProgressBar from "./components/progressbar";
 import Todolist from "./components/Todolist";
 import NewtodoModal from "./components/newtodoModal";
+import todoContext from "./components/todoContext";
 
 function formatTime(timeString) {
   const [hours, minutes] = timeString.split(":");
@@ -101,10 +102,13 @@ function App() {
               <p>loading...</p>
             )}
           </div>
-          <Todolist
+          <todoContext.Provider value={deleteList}>
+                <Todolist
           deleteList = {deleteList}
           formatTime = {formatTime}
           todo={todo} toggleStatus={toggleStatus} />
+          </todoContext.Provider>
+     
 
           <div className="w-full flex h-full justify-end p-4  ">
             <div>
