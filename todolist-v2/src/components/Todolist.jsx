@@ -1,5 +1,9 @@
-export default function Todolist({ todo ,toggleStatus,formatTime,deleteList} ) {
+import todoContext from "./todoContext";
+import {  useContext } from "react";
+export default function Todolist({ todo ,formatTime} ) {
 
+
+  const {deleteList , toggleStatus} = useContext(todoContext)
    
   
     if(!todo  || todo.length === 0 ){
@@ -53,11 +57,11 @@ export default function Todolist({ todo ,toggleStatus,formatTime,deleteList} ) {
             </div>
               <div className="w-full flex justify-end">
                 <div className=" w-10">
-                    <buton
+                    <button
                     onClick = {()=> deleteList(id)}
                     >
                       <img className="w-9" src="https://cdn-icons-png.flaticon.com/512/18461/18461204.png"></img>
-                    </buton>
+                    </button>
                    </div>
               </div>
           </div>

@@ -9,7 +9,7 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage }) => 
 
   return (
     <svg width={sqSize} height={sqSize} viewBox={viewBox}>
-      {/* Background circle */}
+     
       <circle
         className="fill-none stroke-[#ececec4d]"
         cx={sqSize / 2}
@@ -17,7 +17,7 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage }) => 
         r={radius}
         strokeWidth={strokeWidth}
       />
-      {/* Progress circle with shadow + smooth transition */}
+ 
       <circle
         className="fill-none stroke-[#f5f2f2ce] transition-all duration-700 ease-in-out drop-shadow-md"
         cx={sqSize / 2}
@@ -28,7 +28,7 @@ const CircularProgressBar = ({ strokeWidth = 20, sqSize = 210, percentage }) => 
         transform={`rotate(-90 ${sqSize / 2} ${sqSize / 2})`}
         style={{ strokeDasharray: dashArray, strokeDashoffset: dashOffset }}
       />
-      {/* Percentage text with fade transition */}
+
       <text
         x="50%"
         y="45%"

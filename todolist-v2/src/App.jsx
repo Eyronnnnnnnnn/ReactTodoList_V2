@@ -102,11 +102,10 @@ function App() {
               <p>loading...</p>
             )}
           </div>
-          <todoContext.Provider value={deleteList}>
+          <todoContext.Provider value={{ deleteList,toggleStatus }}>
                 <Todolist
-          deleteList = {deleteList}
-          formatTime = {formatTime}
-          todo={todo} toggleStatus={toggleStatus} />
+                todo={todo}
+          formatTime = {formatTime}/>
           </todoContext.Provider>
      
 
